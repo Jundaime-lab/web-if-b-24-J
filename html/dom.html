@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo" class="satu" title="ini adalah demo dom">DEMO</p>
+
+    <div id="div1">
+        <p id="p1">This is a paragraph</p>
+        <p id="p2">This is another paragraph</p>
+        <!-- posisi paragraf baru -->
+    </div>
+    <button type="button" onclick="addPara(this)">Add More Paragraph</button>
+
+    <h1 onclick="this.innerHTML='Demo Text Heading'">This is text heading 1</h1>
+    <h1 onclick="changeString(this)">This is text heading 2</h1>
+    <h1 id="h1">This is text heading 3</h1>
+    <input type="password" id="pass"/>
+    <button type="button" onclick="showHide(this)">SHOW</button>
+<br/><br/>
+
+    <input type="text" id="currentPass" placeholder="Current Password"/> <!-- default 12345 -->
+    <span id="notifCurrentPass"></span><br/>
+    <input type="text" id="newPass" placeholder="New Password"/><span id="notifNewPass"></span><br/>
+    <input type="text" id="confirmPass" placeholder="Confirm Password"/><span id="notifConfirmPass"></span>
+    <br/><button type="button" onclick="resetPassword(this)">Reset Password</button>
+    <br/><br/><br/>
+    <input type="comment" onkeyup="countString(this)"/>
+    <span id="totalString"></span>
+
+    <script>
+        function countString(id) {
+            document.getElementById('totalString').innerHTML = id.value.length;
+
+            if(id.value.length == 0) {
+                document.getElementById('totalString').innerHTML = '';
+            }
+        }
+
+        function resetPassword(id) {
+            let currentPass = document.getElementById('currentPass');
+            let newPass = document.getElementById('newPass');
+            let confirmPass = document.getElementById('confirmPass');
+            let notifCurrentPass = document.getElementById('notifCurrentPass');
+            let notifNewPass = document.getElementById('notifNewPass');
+            let notifConfirmPass = document.getElementById('notifConfirmPass');
+
+            if(currentPass.value == '12345') {
+                notifCurrentPass.innerHTML = 'Valid';
+            } else {
+                notifCurrentPass.innerHTML = 'Password Salah';
+            }
+
+            if(newPass.value == '12345') {
+                notifNewPass.innerHTML = 'Password baru anda tidak boleh sama.';
+            } else {
+                notifNewPass.innerHTML = 'Valid';
+                
+            }
+
+            if(newPass.value == confirmPass.value) {
+                notifConfirmPass.innerHTML = 'Valid';
+            } else {
+                notifConfirmPass.innerHTML = 'Password konfirmasi tidak sama';
+                
+            }
+        }
+
+        function addPara(id) {
+            let para = document.createElement('p');
+            let nodeText = document.createTextNode('This is a new paragraph');
+            para.appendChild(nodeText);
+        
+            let element = document.getElementById('div1');
+            element.appendChild(para);
+        }
+        
+        function showHide(id) {
+            let input = document.getElementById('pass');
+
+            if(input.type == 'password') {
+                input.type = 'text';
+                id.innerHTML = 'HIDE';
+            } else {
+                input.type = 'password';
+                id.innerHTML = 'SHOW';
+            }
+        }
+
+        function changeString(id) {
+            id.innerHTML = 'Perubahan STR melalui method';
+        }
+
+        document.getElementById('h1').onclick = function() {
+            this.innerHTML = 'Perubahan baru...';
+        }
+        // create new element
+        // let para = document.createElement('p');
+        // let nodeText = document.createTextNode('This is a new paragraph');
+        // para.appendChild(nodeText);
+        // para.style.color = 'red';
+        // para.innerHTML = 'This is overide paragraph';
+
+        // let element = document.getElementById('div1');
+        // let sibling1 = document.getElementById('p1');
+        // let sibling2 = document.getElementById('p2');
+        // // element.appendChild(para);
+        // element.insertBefore(para, sibling1);
+        // // element.removeChild(sibling1);
+        // element.replaceChild(para, sibling2);
+
+        let demo = document.getElementById('demo');
+        demo.innerHTML = 'Ini adalah heading 1';
+        demo.setAttribute('class', 'demo');
+        demo.style.color='red';
+        demo.style.fontWeight = 'bold';
+        console.log(demo.title);
+    </script>
+</body>
+</html>
