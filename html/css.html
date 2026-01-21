@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            /* background-color: red; */
+        }
+        .box1, .box2, .box3 {
+            display: box;
+            width: 400px;
+            height: 400px;
+        }
+
+        .box1 {
+            background-color: rgba(255, 240, 40, 0.4);
+        }
+
+        .box2 {
+            background: -webkit-linear-gradient(top left, red,blue);
+        }
+
+        .box3 {
+            background: -webkit-radial-gradient(left, red, orange,yellow, green, blue, indigo, purple);
+        }
+
+        .box4 {
+            position: relative;
+            display: box;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            animation-name: animasi2;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes animasi {
+            from {background-color: red;}
+            to {background-color: blue;}
+        }
+
+        @keyframes animasi2 {
+            0% {top:0px;left: 0px;background-color: red;}
+            25% {top:0px;left: 300px;background-color: blue;border-radius: 50px;}
+            50% {top:300px;left: 300px;background-color: red;border-radius: 0px}
+            75% {top:300px;left: 0px;background-color: blue;border-radius: 50px;}
+            100% {top:0px;left: 0px;background-color: red;}
+        }
+
+        /* CSS LAYOUT */
+        .container {
+            display: flex;
+            background-color: aqua;
+            color: #fff;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: stretch;
+            /* align-content: space-between; */
+            height: 600px;
+        }
+
+        .container > div {
+            background-color: magenta;
+            padding: 50px;
+            margin: 20px;
+        }
+
+        .grid-container {
+            display: grid;
+            background-color: indigo;
+            gap: 10px;
+            grid-template-columns: 0.5fr 1fr 2fr;
+            grid-auto-rows: minmax(100px, auto);
+            grid-template-areas: 
+                "header header header"
+                /* "sidebar sidebar sidebar" */
+                "main main main"
+                "right right right"
+                "footer footer footer"
+            ;
+        }
+
+        .grid-container > div {
+            background-color: lime;
+        }
+
+        /* .item1 {
+            grid-column-start: 1;
+            grid-column-end: 4;
+        }
+
+        .item2 {
+            grid-row-start: 2;
+            grid-row-end: 4;
+        }
+
+        .item3 {
+            grid-column-start: 2;
+            grid-column-end: 4;
+        }
+
+        .item4 {
+            grid-column-start: 3;
+            grid-column-end: 4;
+        }
+
+        .item5 {
+            grid-column-start: 1;
+            grid-column-end: 4;
+        } */
+        .item1 {
+            grid-area: header;
+         }
+
+         .item2 {
+            /* grid-area: sidebar; */
+            display: none;
+         }
+
+         .item3 {
+            grid-area: main;
+         }
+
+         .item4 {
+            grid-area: right;
+         }
+
+         .item5 {
+            grid-area: footer;
+         }
+
+         @media only screen and (min-width: 600px) {
+            .grid-container {
+                grid-template-areas: 
+                    "header header header"
+                    "sidebar main main"
+                    "sidebar . right"
+                    "footer footer footer"
+                ;
+            }
+
+            .item2 {
+                display: grid;
+                grid-area: sidebar;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <div class="box4"></div>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <img src="image.jpg" style="width: 100vw;"/>
+    <br/><br/><br/><br/><br/>
+    </div>
+<div class="grid-container">
+    <div class="item1">1</div>
+    <div class="item2">2</div>
+    <div class="item3">3</div>
+    <div class="item4">4</div>
+    <div class="item5">5</div>
+</div>
+
+<br/><br/><br/>
+    <!-- CSS LAYOUT -->
+     <div class="container">
+        <div style="order:3; align-self: flex-end;">1</div>
+        <div style="order:5; flex-grow: 2;">2</div>
+        <div style="order:4">3</div>
+        <div style="order:1; align-self: flex-start;">4</div>
+        <div style="order:2; flex-grow: 2;align-self: center;">5</div>
+     </div>
+</body>
+</html>
